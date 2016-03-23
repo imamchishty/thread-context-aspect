@@ -6,7 +6,7 @@
 
     <groupId>com.shedhack.thread</groupId>
     <artifactId>thread-context-aspect</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <description>Aspect sets the thread context for a given pointcut.</description>
     <url>https://github.com/imamchishty/thread-context-aspect</url>
