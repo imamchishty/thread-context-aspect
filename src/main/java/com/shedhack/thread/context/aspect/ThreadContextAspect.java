@@ -3,6 +3,7 @@ package com.shedhack.thread.context.aspect;
 import com.shedhack.thread.context.adapter.ThreadContextAdapter;
 import com.shedhack.thread.context.annotation.Ignore;
 import com.shedhack.thread.context.annotation.ThreadContext;
+import com.shedhack.thread.context.helper.AspectHelper;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -35,21 +36,27 @@ import java.util.Map;
  * wraps up the underlying implementation, thus wrapping, simplfying and providing a common way
  * of interacting with a {@link com.shedhack.thread.context.handler.ThreadContextHandler}.
  *
+ * {@link AspectHelper} is also required when constructing the aspect. This helps in getting the correct ID and the context map.
+ * The default implementation can be provided, {@link com.shedhack.thread.context.helper.DefaultAspectHelper}
+ *
  * @author imamchishty
  */
 @Aspect
 @Component
 public class ThreadContextAspect {
 
-    public ThreadContextAspect(ThreadContextAdapter adapter) {
+    public ThreadContextAspect(ThreadContextAdapter adapter, AspectHelper aspectHelper) {
         this.adapter = adapter;
+        this.helper = aspectHelper;
     }
 
     public ThreadContextAdapter adapter;
 
+    private AspectHelper helper;
+
     @Before("execution(* *.*(..)) && @annotation(threadContext) ")
     public void interception(JoinPoint joinPoint, ThreadContext threadContext) throws Throwable {
-        adapter.setContext(getSessionId(), new Date(), getMethodName(joinPoint), getContext(), getMethodParams(joinPoint));
+        adapter.setContext(helper.getId(), new Date(), getMethodName(joinPoint), helper.getContext(), getMethodParams(joinPoint));
     }
 
     // -------------
@@ -62,48 +69,12 @@ public class ThreadContextAspect {
 
     private static final String IGNORED = "IGNORED";
 
-    private static final String CONTEXT_PATH = "path";
-
-    private static final String CONTEXT_HTTP_METHOD = "http-method";
-
-    private static final String CONTEXT_SESSION_ID = "session-id";
-
     // --------------
     // Helper methods
     // --------------
 
-    protected HttpServletRequest getHttpRequestServlet() {
-        return (HttpServletRequest) RequestContextHolder.currentRequestAttributes()
-                .resolveReference(RequestAttributes.REFERENCE_REQUEST);
-    }
-
-    protected String getRequestPath() {
-        return getHttpRequestServlet().getRequestURI();
-    }
-
-    protected String getHttpMethod() {
-        return getHttpRequestServlet().getMethod();
-    }
-
-    protected String getSessionId() {
-        return getHttpSession().getId();
-    }
-
-    protected HttpSession getHttpSession() {
-        return (HttpSession) RequestContextHolder.currentRequestAttributes()
-                .resolveReference(RequestAttributes.REFERENCE_SESSION);
-    }
-
     protected String getMethodName(JoinPoint joinPoint) {
         return joinPoint.getSignature().getDeclaringTypeName() + DOT + joinPoint.getSignature().getName();
-    }
-
-    protected Map<String, Object> getContext() {
-        Map<String, Object> context = new HashMap<>();
-        context.put(CONTEXT_PATH, getRequestPath());
-        context.put(CONTEXT_HTTP_METHOD, getHttpMethod());
-        context.put(CONTEXT_SESSION_ID, getSessionId());
-        return context;
     }
 
     protected Map<String, Object> getMethodParams(JoinPoint joinPoint) {
