@@ -2,6 +2,7 @@ package com.shedhack.thread.context.aspect.config;
 
 import com.shedhack.thread.context.adapter.ListThreadContextAdapter;
 import com.shedhack.thread.context.aspect.ThreadContextAspect;
+import com.shedhack.thread.context.helper.AspectHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,8 +29,11 @@ public class ListAspectConfiguration {
     @Autowired
     private ListThreadContextAdapter listThreadContextAdapter;
 
+    @Autowired
+    private AspectHelper aspectHelper;
+
     @Bean
     public ThreadContextAspect listThreadContextAspect() {
-        return new ThreadContextAspect(listThreadContextAdapter);
+        return new ThreadContextAspect(listThreadContextAdapter, aspectHelper);
     }
 }

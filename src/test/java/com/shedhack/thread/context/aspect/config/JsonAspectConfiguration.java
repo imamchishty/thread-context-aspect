@@ -2,6 +2,8 @@ package com.shedhack.thread.context.aspect.config;
 
 import com.shedhack.thread.context.adapter.JsonThreadContextAdapter;
 import com.shedhack.thread.context.aspect.ThreadContextAspect;
+import com.shedhack.thread.context.helper.AspectHelper;
+import com.shedhack.thread.context.helper.DefaultAspectHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,9 +30,12 @@ public class JsonAspectConfiguration {
     @Autowired
     private JsonThreadContextAdapter jsonThreadContextAdapter;
 
+    @Autowired
+    private AspectHelper aspectHelper;
+
     @Bean
     public ThreadContextAspect jsonThreadContextAspect() {
-        return new ThreadContextAspect(jsonThreadContextAdapter);
+        return new ThreadContextAspect(jsonThreadContextAdapter, aspectHelper);
     }
 
 }

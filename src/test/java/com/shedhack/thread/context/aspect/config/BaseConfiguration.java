@@ -6,6 +6,8 @@ import com.shedhack.thread.context.adapter.SimpleThreadContextAdapter;
 import com.shedhack.thread.context.handler.JsonThreadContextHandler;
 import com.shedhack.thread.context.handler.ListThreadContextHandler;
 import com.shedhack.thread.context.handler.SimpleThreadContextHandler;
+import com.shedhack.thread.context.helper.AspectHelper;
+import com.shedhack.thread.context.helper.DefaultAspectHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -62,6 +64,9 @@ public class BaseConfiguration {
         return new SimpleThreadContextAdapter(simpleThreadContextHandler());
     }
 
-
+    @Bean
+    public AspectHelper aspectHelper() {
+        return new DefaultAspectHelper();
+    }
 
 }
