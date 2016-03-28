@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by imamchishty on 16/03/2016.
+ * Test configuration.
  */
 @Configuration
 public class BaseConfiguration {

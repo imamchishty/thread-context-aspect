@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * Created by imamchishty on 16/03/2016.
+ * Json specific configuration.
  */
 @Configuration
 @SpringBootApplication

@@ -16,7 +16,7 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 
 /**
- * Created by imamchishty on 10/03/2016.
+ * Test controller, to which the aspect will be applied.
  */
 @Controller
 public class FooService {
