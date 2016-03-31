@@ -81,6 +81,7 @@ The above also includes the filter for generating the request-id. Please note th
 ## Dependencies
 
 As mentioned above this uses the `thread-context-handler` library.
+
         <dependency>
             <groupId>com.shedhack.thread</groupId>
             <artifactId>thread-context-handler</artifactId>
