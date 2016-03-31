@@ -88,7 +88,7 @@ As mentioned above this uses the `thread-context-handler` library.
             <version>1.0.2</version>
         </dependency>
 
-Also Spring Boot AOP
+Also Spring Boot AOP and Spring Boot Web
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,7 +96,13 @@ Also Spring Boot AOP
             <version>1.3.3.RELEASE</version>
         </dependency>
 
-If you are using a different version of spring-boot-starter-aop then you could set a Maven exclusion for `spring-boot-starter-aop`, for example:
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.3.3.RELEASE</version>
+        </dependency>
+        
+If you are using a different version of spring-boot-starter-aop/web then you could set a Maven exclusions, for example:
 
            <dependency>
                 <groupId>com.shedhack.thread</groupId>
