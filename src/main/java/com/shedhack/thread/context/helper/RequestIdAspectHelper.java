@@ -53,10 +53,6 @@ public class RequestIdAspectHelper implements AspectHelper {
         String id = getHttpRequestServlet().getHeader(requestId);
 
         if(id != null) {
-
-            // try from the thread local
-            //ThreadLocal.
-
             return id;
         }
 
