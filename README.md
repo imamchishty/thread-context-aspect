@@ -34,7 +34,7 @@ The first property is the request-id which could be set using a HTTP server or [
 
 ThreadContextAspect requires an implementation of [__ThreadContextAdapter__](https://github.com/imamchishty/thread-context-handler). This adapter wraps up the underlying implementation, thus wrapping, simplfying and providing a common way of interacting with a [__ThreadContextHandler__](https://github.com/imamchishty/thread-context-handler).
 
-[__Aspect Helper](https://github.com/imamchishty/thread-context-aspect/blob/master/src/main/java/com/shedhack/thread/context/helper/AspectHelper.java) is also required when constructing the aspect. This helps in getting the correct ID and the context map.
+[__Aspect Helper__](https://github.com/imamchishty/thread-context-aspect/blob/master/src/main/java/com/shedhack/thread/context/helper/AspectHelper.java) is also required when constructing the aspect. This helps in getting the correct ID and the context map.
 The default implementation can be provided, [__RequestIdAspectHelper__](https://github.com/imamchishty/thread-context-aspect/blob/master/src/main/java/com/shedhack/thread/context/helper/RequestIdAspectHelper.java). This implementation will attempt to find the request-id, if unable to do so then it defaults to the session-id.
 
 ## Setup
