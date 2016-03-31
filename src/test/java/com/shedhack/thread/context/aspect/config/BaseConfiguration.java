@@ -7,7 +7,7 @@ import com.shedhack.thread.context.handler.JsonThreadContextHandler;
 import com.shedhack.thread.context.handler.ListThreadContextHandler;
 import com.shedhack.thread.context.handler.SimpleThreadContextHandler;
 import com.shedhack.thread.context.helper.AspectHelper;
-import com.shedhack.thread.context.helper.DefaultAspectHelper;
+import com.shedhack.thread.context.helper.RequestIdAspectHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -66,7 +66,7 @@ public class BaseConfiguration {
 
     @Bean
     public AspectHelper aspectHelper() {
-        return new DefaultAspectHelper();
+        return new RequestIdAspectHelper("request-id");
     }
 
 }

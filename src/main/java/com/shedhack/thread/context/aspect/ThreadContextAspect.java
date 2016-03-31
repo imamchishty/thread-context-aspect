@@ -9,11 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.lang.annotation.Annotation;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,7 +33,7 @@ import java.util.Map;
  * of interacting with a {@link com.shedhack.thread.context.handler.ThreadContextHandler}.
  *
  * {@link AspectHelper} is also required when constructing the aspect. This helps in getting the correct ID and the context map.
- * The default implementation can be provided, {@link com.shedhack.thread.context.helper.DefaultAspectHelper}
+ * The default implementation can be provided, {@link com.shedhack.thread.context.helper.RequestIdAspectHelper}
  *
  * @author imamchishty
  */

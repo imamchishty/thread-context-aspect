@@ -11,12 +11,12 @@ import java.util.Map;
 /**
  * Default implementation for {@link com.shedhack.thread.context.helper.AspectHelper}
  *
- * The session Id is used as the ID.
+ * The request-id is used as the ID, if not available then session Id is used.
  * The context map contains the http-method, session-id and the path.
  *
  * @author imamchishty
  */
-public class DefaultAspectHelper implements AspectHelper {
+public class RequestIdAspectHelper implements AspectHelper {
 
     // -------------
     // Static fields
@@ -28,11 +28,38 @@ public class DefaultAspectHelper implements AspectHelper {
 
     private static final String CONTEXT_SESSION_ID = "session-id";
 
+    private String requestId = "request-id";
 
     /**
-     * {@inheritDoc}
+     * Constructor requires the header key for the request id property.
+     * If you wish to default to 'request-id' please use the default constructor.
+     */
+    public RequestIdAspectHelper(String requestIdKey) {
+        this.requestId = requestIdKey;
+    }
+
+    /**
+     * Default constructor, the header key for the request-id defaults
+     * to look for 'request-id'.
+     */
+    public RequestIdAspectHelper() {
+    }
+
+    /**
+     * Attempts to find the 'request-id', if it fails then defaults to the session Id.
      */
     public String getId() {
+
+        String id = getHttpRequestServlet().getHeader(requestId);
+
+        if(id != null) {
+
+            // try from the thread local
+            //ThreadLocal.
+
+            return id;
+        }
+
         return getHttpSession().getId();
     }
 
