@@ -114,10 +114,6 @@ If you are using a different version of spring-boot-starter-aop then you could s
 
 Built using JDK8.
 
-## Example
-
-## Using different Spring Boot versions
-
 ## Maven central
 
 This artifact is available in [Maven Central] (https://maven-badges.herokuapp.com/maven-central/com.shedhack.thread/thread-context-aspect).
