@@ -12,7 +12,7 @@ import java.util.Map;
  * Default implementation for {@link com.shedhack.thread.context.helper.AspectHelper}
  *
  * The request-id is used as the ID, if not available then session Id is used.
- * The context map contains the http-method, session-id and the path.
+ * The context map contains the group-id, caller-id and session-id.
  *
  * @author imamchishty
  */

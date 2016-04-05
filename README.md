@@ -26,7 +26,7 @@ Simply mark the method you wish to use to set the context. Notice that the secon
 
 If you're using the [**SimpleThreadContextHandler**](https://github.com/imamchishty/thread-context-handler/blob/master/src/main/java/com/shedhack/thread/context/handler/SimpleThreadContextHandler.java) then the output would be similar to (separated by `~`):
 
-`1cfbcdd7-e71f-4e87-96fb-e27c9be32a10~Thu Mar 31 15:41:28 GST 2016~com.foo.service.account.controller.AccountController.getBalance~{path=/api/v1/accounts/11111/balance, http-method=GET, session-id=ECFCBEA307CD6AD359843C70E99C741F}~{ARG0=11111}`
+`{id='1234567890', timestamp=Tue Apr 05 16:20:43 GST 2016, methodName='com.shedhack.thread.context.adapter.FooService.calc', params={ARG0=199, ARG1=200}, context={session-id=ABC}}`
 
 The first property is the request-id which could be set using a HTTP server or [__Filter Request Id__](https://github.com/imamchishty/filter-request-id). This value is part of the HTTP header and can be accessed using the [__ThreadLocal String Utility__ project](https://github.com/imamchishty/threadlocal-string-utility).
 
