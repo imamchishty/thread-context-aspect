@@ -22,25 +22,16 @@ public class RequestIdAspectHelper implements AspectHelper {
     // Static fields
     // -------------
 
-    private static final String CONTEXT_PATH = "path";
+    private static final String CONTEXT_GROUP_ID = "group-id";
 
-    private static final String CONTEXT_HTTP_METHOD = "http-method";
+    private static final String CONTEXT_CALLER_ID = "caller-id";
 
     private static final String CONTEXT_SESSION_ID = "session-id";
 
-    private String requestId = "request-id";
+    private static final String REQUEST_ID = "request-id";
 
     /**
-     * Constructor requires the header key for the request id property.
-     * If you wish to default to 'request-id' please use the default constructor.
-     */
-    public RequestIdAspectHelper(String requestIdKey) {
-        this.requestId = requestIdKey;
-    }
-
-    /**
-     * Default constructor, the header key for the request-id defaults
-     * to look for 'request-id'.
+     * Default constructor.
      */
     public RequestIdAspectHelper() {
     }
@@ -50,7 +41,7 @@ public class RequestIdAspectHelper implements AspectHelper {
      */
     public String getId() {
 
-        String id = getHttpRequestServlet().getHeader(requestId);
+        String id = getHttpRequestServlet().getHeader(REQUEST_ID);
 
         if(id != null) {
             return id;
@@ -64,8 +55,9 @@ public class RequestIdAspectHelper implements AspectHelper {
      */
     public Map<String, Object> getContext() {
         Map<String, Object> context = new HashMap<>();
-        context.put(CONTEXT_PATH, getRequestPath());
-        context.put(CONTEXT_HTTP_METHOD, getHttpMethod());
+
+        context.put(CONTEXT_GROUP_ID, getHttpRequestServlet().getHeader(CONTEXT_GROUP_ID));
+        context.put(CONTEXT_CALLER_ID, getHttpRequestServlet().getHeader(CONTEXT_CALLER_ID));
         context.put(CONTEXT_SESSION_ID, getHttpSession().getId());
         return context;
     }

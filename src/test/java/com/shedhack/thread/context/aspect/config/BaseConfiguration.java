@@ -66,7 +66,7 @@ public class BaseConfiguration {
 
     @Bean
     public AspectHelper aspectHelper() {
-        return new RequestIdAspectHelper("request-id");
+        return new RequestIdAspectHelper();
     }
 
 }

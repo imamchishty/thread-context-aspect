@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.shedhack.thread</groupId>
             <artifactId>thread-context-handler</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
+            <version>1.0.2</version>
         </dependency>
 
         <dependency>
