@@ -39,7 +39,11 @@ The default implementation can be provided, [__RequestIdAspectHelper__](https://
 
 ## Setup
 
-In your Spring configuration:
+For the default configuration, using the Simple Handler + Adapter just add the following annotation to you Application class:
+
+    @EnableThreadContextAspect 
+
+Traditional Spring configuration:
 
     // -----------------
     // Request Id Filter
