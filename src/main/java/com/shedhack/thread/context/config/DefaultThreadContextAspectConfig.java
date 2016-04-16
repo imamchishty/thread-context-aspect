@@ -2,7 +2,6 @@ package com.shedhack.thread.context.config;
 
 import com.shedhack.thread.context.adapter.SimpleThreadContextAdapter;
 import com.shedhack.thread.context.aspect.ThreadContextAspect;
-import com.shedhack.thread.context.handler.LoggingAfterSet;
 import com.shedhack.thread.context.handler.SimpleThreadContextHandler;
 import com.shedhack.thread.context.helper.AspectHelper;
 import com.shedhack.thread.context.helper.RequestIdAspectHelper;
