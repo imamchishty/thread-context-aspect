@@ -68,7 +68,7 @@ public class JsonThreadContextAspectTest {
         assertEquals("IGNORED", model.get().getParams().get("ARG1"));
 
         // Check the context
-        assertNotNull(model.get().getContext().get("session-id"));
+        assertTrue(model.get().getContext().isEmpty());
     }
 
     private String getRootUrl() {

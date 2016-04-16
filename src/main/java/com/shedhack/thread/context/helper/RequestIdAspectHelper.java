@@ -5,6 +5,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,12 +55,7 @@ public class RequestIdAspectHelper implements AspectHelper {
      * {@inheritDoc}
      */
     public Map<String, Object> getContext() {
-        Map<String, Object> context = new HashMap<>();
-
-        context.put(CONTEXT_GROUP_ID, getHttpRequestServlet().getHeader(CONTEXT_GROUP_ID));
-        context.put(CONTEXT_CALLER_ID, getHttpRequestServlet().getHeader(CONTEXT_CALLER_ID));
-        context.put(CONTEXT_SESSION_ID, getHttpSession().getId());
-        return context;
+        return Collections.emptyMap();
     }
 
     // --------------
