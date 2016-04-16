@@ -9,8 +9,6 @@ import com.shedhack.thread.context.helper.RequestIdAspectHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
-
 /**
  * Default configuration using {@link SimpleThreadContextAdapter}
  */
@@ -23,7 +21,7 @@ public class DefaultThreadContextAspectConfig {
 
     @Bean
     public SimpleThreadContextHandler simpleThreadContextHandler() {
-        return new SimpleThreadContextHandler(Arrays.asList(new LoggingAfterSet()));
+        return new SimpleThreadContextHandler();
     }
 
     @Bean
