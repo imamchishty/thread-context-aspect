@@ -60,25 +60,25 @@
         <dependency>
             <groupId>com.shedhack.thread</groupId>
             <artifactId>thread-context-handler</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <version>1.3.3.RELEASE</version>
+            <version>1.3.5.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>1.3.3.RELEASE</version>
+            <version>1.3.5.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>1.3.3.RELEASE</version>
+            <version>1.3.5.RELEASE</version>
             <scope>test</scope>
         </dependency>
 
