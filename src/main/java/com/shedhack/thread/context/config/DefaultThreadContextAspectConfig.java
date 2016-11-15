@@ -1,10 +1,12 @@
 package com.shedhack.thread.context.config;
 
+import com.google.gson.Gson;
 import com.shedhack.thread.context.adapter.SimpleThreadContextAdapter;
 import com.shedhack.thread.context.aspect.ThreadContextAspect;
 import com.shedhack.thread.context.handler.SimpleThreadContextHandler;
 import com.shedhack.thread.context.helper.AspectHelper;
-import com.shedhack.thread.context.helper.RequestIdAspectHelper;
+import com.shedhack.thread.context.helper.SpanIdAspectHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,24 +20,22 @@ public class DefaultThreadContextAspectConfig {
     // Thread Handler + Aspect
     // -----------------------
 
-    @Bean
-    public SimpleThreadContextHandler simpleThreadContextHandler() {
-        return new SimpleThreadContextHandler();
-    }
-
-    @Bean
-    public SimpleThreadContextAdapter simpleThreadContextAdapter() {
-        return new SimpleThreadContextAdapter(simpleThreadContextHandler());
-    }
+    @Autowired(required = false)
+    private Gson gson;
 
     @Bean
     public AspectHelper aspectHelper() {
-        return new RequestIdAspectHelper();
+        return new SpanIdAspectHelper();
     }
 
     @Bean
     public ThreadContextAspect simpleThreadContextAspect() {
-        return new ThreadContextAspect(simpleThreadContextAdapter(), aspectHelper());
+
+        if(gson == null) {
+            gson = new Gson();
+        }
+
+        return new ThreadContextAspect(aspectHelper(), gson);
     }
 
 }

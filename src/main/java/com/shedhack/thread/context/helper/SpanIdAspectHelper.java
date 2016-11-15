@@ -12,37 +12,31 @@ import java.util.Map;
 /**
  * Default implementation for {@link com.shedhack.thread.context.helper.AspectHelper}
  *
- * The request-id is used as the ID, if not available then session Id is used.
- * The context map contains the group-id, caller-id and session-id.
+ * The traceId (requires Sleuth) is used as the ID, if not available then session Id is used.
  *
  * @author imamchishty
  */
-public class RequestIdAspectHelper implements AspectHelper {
+public class SpanIdAspectHelper implements AspectHelper {
 
     // -------------
     // Static fields
     // -------------
 
-    private static final String CONTEXT_GROUP_ID = "group-id";
-
-    private static final String CONTEXT_CALLER_ID = "caller-id";
-
-    private static final String CONTEXT_SESSION_ID = "session-id";
-
-    private static final String REQUEST_ID = "request-id";
+    private static final String SPAN_ID = "spanId";
+    private static final String TRACE_ID = "traceId";
 
     /**
      * Default constructor.
      */
-    public RequestIdAspectHelper() {
+    public SpanIdAspectHelper() {
     }
 
     /**
-     * Attempts to find the 'request-id', if it fails then defaults to the session Id.
+     * Attempts to find the 'spanId', if it fails then defaults to the session Id.
      */
     public String getId() {
 
-        String id = getHttpRequestServlet().getHeader(REQUEST_ID);
+        String id = getHttpRequestServlet().getHeader(TRACE_ID);
 
         if(id != null) {
             return id;
@@ -55,6 +49,13 @@ public class RequestIdAspectHelper implements AspectHelper {
      * {@inheritDoc}
      */
     public Map<String, Object> getContext() {
+
+        String spanId = getHttpRequestServlet().getHeader(SPAN_ID);
+        Map<String, Object> context = new HashMap<>();
+
+        context.put(SPAN_ID, spanId);
+        context.put(TRACE_ID, getId());
+
         return Collections.emptyMap();
     }
 

@@ -1,6 +1,7 @@
 package com.shedhack.thread.context.aspect;
 
-import com.shedhack.thread.context.aspect.config.JsonAspectConfiguration;
+import com.google.gson.Gson;
+import com.shedhack.thread.context.aspect.config.SimpleAspectConfiguration;
 import com.shedhack.thread.context.handler.JsonThreadContextHandler;
 import com.shedhack.thread.context.model.ThreadContextModel;
 import org.junit.Test;
@@ -27,7 +28,7 @@ import static org.junit.Assert.assertTrue;
  * becomes a bit cumbersome (I know I could use Thread.getAllStackTraces().keySet())
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(JsonAspectConfiguration.class)
+@SpringApplicationConfiguration(SimpleAspectConfiguration.class)
 @WebIntegrationTest(randomPort = true)
 @Profile("json")
 public class JsonThreadContextAspectTest {
@@ -37,8 +38,7 @@ public class JsonThreadContextAspectTest {
 
     private RestTemplate template = new TestRestTemplate();
 
-    @Autowired
-    private JsonThreadContextHandler helper;
+    private JsonThreadContextHandler helper = new JsonThreadContextHandler(new Gson());
 
     @Test
     public void should_create_thread_context_via_aspect() throws Exception {
