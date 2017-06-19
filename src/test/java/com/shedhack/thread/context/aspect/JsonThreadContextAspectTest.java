@@ -7,13 +7,10 @@ import com.shedhack.thread.context.model.ThreadContextModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
@@ -28,15 +25,12 @@ import static org.junit.Assert.assertTrue;
  * becomes a bit cumbersome (I know I could use Thread.getAllStackTraces().keySet())
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(SimpleAspectConfiguration.class)
-@WebIntegrationTest(randomPort = true)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SimpleAspectConfiguration.class)
 @Profile("json")
 public class JsonThreadContextAspectTest {
 
-    @Value("${local.server.port}")
-    private int serverPort;
-
-    private RestTemplate template = new TestRestTemplate();
+    @Autowired
+    private TestRestTemplate template;
 
     private JsonThreadContextHandler helper = new JsonThreadContextHandler(new Gson());
 
@@ -72,6 +66,6 @@ public class JsonThreadContextAspectTest {
     }
 
     private String getRootUrl() {
-        return "http://localhost:" + serverPort;
+        return "";
     }
 }
